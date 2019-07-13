@@ -27,6 +27,11 @@ class FeedViewModel {
             rssFeeds.append(FeedSource(data: each))
         }
     }
+    
+    func expandedBtnTapped(section:Int){
+        rssFeeds[section].isExpanded = !rssFeeds[section].isExpanded
+        delegate?.reloadData()
+    }
 }
 
 extension FeedViewModel: RSSFeederLoginCallBack{
@@ -61,7 +66,8 @@ extension FeedViewModel: FeedViewDataSource {
     }
     
     func numberOfRows(for section: Int) -> Int {
-        return rssFeeds[section].feed.count
+        let source = rssFeeds[section]
+        return (source.isExpanded) ? source.feed.count : 0
     }
     
     func getDataForRow(for indexPath: IndexPath) -> FeedCellDataSource {

@@ -17,6 +17,10 @@ protocol FeedSectionHeaderDataSource {
     var imgName:String{get}
 }
 
+protocol  FeedSectionHeaderDelegate{
+    func expandBtnTapped(section: Int)
+}
+
 protocol FeedViewDataSource: class  {
     var numberOfSections:Int{get}
     
@@ -26,7 +30,7 @@ protocol FeedViewDataSource: class  {
 }
 
 protocol FeedViewDelegate: class {
-    
+    func expandBtnTapped(section:Int)
 }
 
 class FeedView: UIView {
@@ -56,7 +60,8 @@ extension FeedView: UICollectionViewDataSource {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "FeedSectionCollectionReusableViewIdentifier", for: indexPath) as! FeedSectionCollectionReusableView
-            
+            headerView.section = indexPath.section
+            headerView.delegate = self
             if let data = dataSource?.getDataForSectionHeader(for: indexPath.section){
                 headerView.updateView(data: data)
             }
@@ -83,4 +88,10 @@ extension FeedView: UICollectionViewDataSource {
 
 extension FeedView: UICollectionViewDelegate {
     
+}
+
+extension FeedView: FeedSectionHeaderDelegate{
+    func expandBtnTapped(section: Int) {
+        delegate?.expandBtnTapped(section: section)
+    }
 }

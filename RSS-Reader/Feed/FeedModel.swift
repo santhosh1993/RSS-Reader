@@ -10,13 +10,15 @@ import Foundation
 import RSSDataLoader
 
 class FeedSource:FeedSectionHeaderDataSource {
-    var imgName: String = ""
-    
+    var imgName: String = "arrowDown"
     let title: String
-    
     let url: String
-    
     var feed:[Feed] = []
+    var isExpanded = false {
+        didSet{
+            imgName = (isExpanded) ? "arrowUp" : "arrowDown"
+        }
+    }
     
     init(data:RSSFeedsProtocol) {
         title = data.title ?? ""

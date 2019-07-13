@@ -41,5 +41,7 @@ extension FeedViewController: FeedViewModelDelegate{
 }
 
 extension FeedViewController: FeedViewDelegate {
-    
+    func expandBtnTapped(section: Int) {
+        viewModel.expandedBtnTapped(section: section)
+    }
 }

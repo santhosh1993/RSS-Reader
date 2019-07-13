@@ -11,10 +11,16 @@ import UIKit
 class FeedSectionCollectionReusableView: UICollectionReusableView {
         
     @IBOutlet weak var titleLbl: UILabel!
-    @IBOutlet weak var expandableImg: UIImageView!
+    @IBOutlet weak var expandableBtn: UIButton!
+    var section:Int = 0
+    var delegate:FeedSectionHeaderDelegate?
     
     func updateView(data: FeedSectionHeaderDataSource) {
         titleLbl.text = data.title
-        expandableImg.image = UIImage(named: data.imgName)
+        expandableBtn.setImage(UIImage(named: data.imgName), for: UIControl.State.normal)
+    }
+    
+    @IBAction func expandBtnTapped(_ sender: Any) {
+        delegate?.expandBtnTapped(section: section)
     }
 }
