@@ -21,6 +21,9 @@
 		B5C9716922D764DF000BE928 /* FeedSectionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C9716822D764DF000BE928 /* FeedSectionCollectionReusableView.swift */; };
 		B5C9716B22D769E6000BE928 /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C9716A22D769E6000BE928 /* FeedCollectionViewCell.swift */; };
 		B5C9716D22D89346000BE928 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C9716C22D89346000BE928 /* FeedModel.swift */; };
+		B5C9717222DA104F000BE928 /* FeedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C9717122DA104F000BE928 /* FeedDetailViewController.swift */; };
+		B5C9717722DA2829000BE928 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C9717622DA2829000BE928 /* BaseViewController.swift */; };
+		B5C9717B22DA289F000BE928 /* LoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C9717922DA289F000BE928 /* LoaderViewController.swift */; };
 		B5CF275122D33CB000E4979B /* RSSDataLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5CF274122D33C9D00E4979B /* RSSDataLoader.framework */; };
 		B5CF275222D33CB000E4979B /* RSSDataLoader.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5CF274122D33C9D00E4979B /* RSSDataLoader.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B5CF275522D33CB000E4979B /* RSSFeederLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5CF273822D33C9700E4979B /* RSSFeederLogin.framework */; };
@@ -122,6 +125,9 @@
 		B5C9716822D764DF000BE928 /* FeedSectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSectionCollectionReusableView.swift; sourceTree = "<group>"; };
 		B5C9716A22D769E6000BE928 /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		B5C9716C22D89346000BE928 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
+		B5C9717122DA104F000BE928 /* FeedDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailViewController.swift; sourceTree = "<group>"; };
+		B5C9717622DA2829000BE928 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		B5C9717922DA289F000BE928 /* LoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderViewController.swift; sourceTree = "<group>"; };
 		B5CF273222D33C9700E4979B /* RSSFeederLogin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RSSFeederLogin.xcodeproj; path = ../RSSFeederLogin/RSSFeederLogin.xcodeproj; sourceTree = "<group>"; };
 		B5CF273B22D33C9D00E4979B /* RSSDataLoader.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RSSDataLoader.xcodeproj; path = ../RSSDataLoader/RSSDataLoader.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -178,6 +184,9 @@
 		B568EBE7229E5DDC002C67DA /* RSS-Reader */ = {
 			isa = PBXGroup;
 			children = (
+				B5C9717822DA2885000BE928 /* Loader */,
+				B5C9717322DA25D8000BE928 /* Base classes and Extensions */,
+				B5C9717022DA1031000BE928 /* Feed Detail */,
 				B5C9715F22D74BA3000BE928 /* Feed */,
 				B568EBE8229E5DDC002C67DA /* AppDelegate.swift */,
 				B568EBEA229E5DDC002C67DA /* ViewController.swift */,
@@ -219,6 +228,30 @@
 				B5C9716C22D89346000BE928 /* FeedModel.swift */,
 			);
 			path = Feed;
+			sourceTree = "<group>";
+		};
+		B5C9717022DA1031000BE928 /* Feed Detail */ = {
+			isa = PBXGroup;
+			children = (
+				B5C9717122DA104F000BE928 /* FeedDetailViewController.swift */,
+			);
+			path = "Feed Detail";
+			sourceTree = "<group>";
+		};
+		B5C9717322DA25D8000BE928 /* Base classes and Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B5C9717622DA2829000BE928 /* BaseViewController.swift */,
+			);
+			path = "Base classes and Extensions";
+			sourceTree = "<group>";
+		};
+		B5C9717822DA2885000BE928 /* Loader */ = {
+			isa = PBXGroup;
+			children = (
+				B5C9717922DA289F000BE928 /* LoaderViewController.swift */,
+			);
+			path = Loader;
 			sourceTree = "<group>";
 		};
 		B5CF273322D33C9700E4979B /* Products */ = {
@@ -416,13 +449,16 @@
 			files = (
 				B5C9716522D74C77000BE928 /* FeedViewModel.swift in Sources */,
 				B5C9716D22D89346000BE928 /* FeedModel.swift in Sources */,
+				B5C9717722DA2829000BE928 /* BaseViewController.swift in Sources */,
 				B568EBEB229E5DDC002C67DA /* ViewController.swift in Sources */,
 				B5C9716B22D769E6000BE928 /* FeedCollectionViewCell.swift in Sources */,
 				B568EBF1229E5DDC002C67DA /* RSS_Reader.xcdatamodeld in Sources */,
 				B5C9716322D74BBF000BE928 /* FeedViewController.swift in Sources */,
+				B5C9717B22DA289F000BE928 /* LoaderViewController.swift in Sources */,
 				B5C9716722D74D78000BE928 /* FeedView.swift in Sources */,
 				B5C9716922D764DF000BE928 /* FeedSectionCollectionReusableView.swift in Sources */,
 				B568EBE9229E5DDC002C67DA /* AppDelegate.swift in Sources */,
+				B5C9717222DA104F000BE928 /* FeedDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

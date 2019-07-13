@@ -12,7 +12,9 @@ import RSSDataLoader
 
 protocol FeedViewModelDelegate: class {
     func reloadData()
-    func loader(show:Bool)
+    func showLoader()
+    func hideLoader()
+    func pushTheFeedDetailView(feed:Feed)
 }
 
 class FeedViewModel {
@@ -36,6 +38,11 @@ class FeedViewModel {
     func addNewRSSFeed(title:String, url:String) {
         RSSDataLoader.addNewRSSFeed(url: url, title: title, callBack: self)
     }
+    
+    func itemSelected(indexPath:IndexPath) {
+        let feed = rssFeeds[indexPath.section].feed[indexPath.row]
+        delegate?.pushTheFeedDetailView(feed: feed)
+    }
 }
 
 extension FeedViewModel: RSSFeederLoginCallBack{
@@ -44,6 +51,7 @@ extension FeedViewModel: RSSFeederLoginCallBack{
     }
     
     func userSuccessfullyAuthenticated() {
+        delegate?.showLoader()
         RSSDataLoader.setTheCallBack(with: self)
         RSSDataLoader.updateTheFeed()
     }
@@ -56,10 +64,10 @@ extension FeedViewModel: RSSDataLoaderProtocol{
     
     func dataGotUpdated() {
         DispatchQueue.main.async { [weak self] in
-            self?.delegate?.loader(show: true)
+            self?.delegate?.showLoader()
             self?.getTheFeed()
             self?.delegate?.reloadData()
-            self?.delegate?.loader(show: false)
+            self?.delegate?.hideLoader()
         }
     }
 }

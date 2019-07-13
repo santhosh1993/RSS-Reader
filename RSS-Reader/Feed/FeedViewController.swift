@@ -10,9 +10,10 @@ import UIKit
 import RSSFeederLogin
 import RSSDataLoader
 
-class FeedViewController: UIViewController {
+class FeedViewController: BaseViewController {
 
     let viewModel: FeedViewModel = FeedViewModel()
+    var feed: Feed?
     
     @IBOutlet var feedView: FeedView!
     
@@ -56,20 +57,32 @@ class FeedViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? FeedDetailViewController {
+            vc.feed = feed
+        }
+    }
+    
 }
 
 extension FeedViewController: FeedViewModelDelegate{
-    func reloadData() {
-        feedView.reloadData()
+    
+    func pushTheFeedDetailView(feed: Feed) {
+        self.feed = feed
+        performSegue(withIdentifier: "FeedListToFeedDetailViewIdentifier", sender: self)
     }
     
-    func loader(show: Bool) {
-        
+    func reloadData() {
+        feedView.reloadData()
     }
 }
 
 extension FeedViewController: FeedViewDelegate {
     func expandBtnTapped(section: Int) {
         viewModel.expandedBtnTapped(section: section)
+    }
+    
+    func itemDidSelect(indexPath: IndexPath) {
+        viewModel.itemSelected(indexPath: indexPath)
     }
 }

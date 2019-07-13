@@ -31,6 +31,7 @@ protocol FeedViewDataSource: class  {
 
 protocol FeedViewDelegate: class {
     func expandBtnTapped(section:Int)
+    func itemDidSelect(indexPath: IndexPath)
 }
 
 class FeedView: UIView {
@@ -87,7 +88,10 @@ extension FeedView: UICollectionViewDataSource {
 }
 
 extension FeedView: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        delegate?.itemDidSelect(indexPath: indexPath)
+    }
 }
 
 extension FeedView: FeedSectionHeaderDelegate{
