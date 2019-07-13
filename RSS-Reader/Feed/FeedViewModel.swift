@@ -32,6 +32,10 @@ class FeedViewModel {
         rssFeeds[section].isExpanded = !rssFeeds[section].isExpanded
         delegate?.reloadData()
     }
+    
+    func addNewRSSFeed(title:String, url:String) {
+        RSSDataLoader.addNewRSSFeed(url: url, title: title, callBack: self)
+    }
 }
 
 extension FeedViewModel: RSSFeederLoginCallBack{
@@ -47,7 +51,7 @@ extension FeedViewModel: RSSFeederLoginCallBack{
 
 extension FeedViewModel: RSSDataLoaderProtocol{
     func completion(status: Bool) {
-        
+        dataGotUpdated()
     }
     
     func dataGotUpdated() {

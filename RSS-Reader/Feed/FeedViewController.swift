@@ -27,7 +27,35 @@ class FeedViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: "Add New RSS feed url", message: "", preferredStyle: UIAlertController.Style.alert)
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "RSS Title"
+        }
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "RSS Feed URL"
+        }
+        
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler: {[weak self] alert -> Void in
+            let titleTF = alertController.textFields![0] as UITextField
+            let urlTF = alertController.textFields![1] as UITextField
+            
+            self?.viewModel.addNewRSSFeed(title: titleTF.text ?? "", url: urlTF.text ?? "")
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: {
+            (action : UIAlertAction!) -> Void in })
+        
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true) {
+            
+        }
+    }
+    
 }
 
 extension FeedViewController: FeedViewModelDelegate{

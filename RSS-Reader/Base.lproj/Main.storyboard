@@ -119,7 +119,13 @@
                             <outlet property="feedCollectionView" destination="uOX-il-lzg" id="K61-CE-BXK"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="nQa-Fo-Scc"/>
+                    <navigationItem key="navigationItem" id="nQa-Fo-Scc">
+                        <barButtonItem key="rightBarButtonItem" image="add" id="XUh-Vb-Lhc">
+                            <connections>
+                                <action selector="addButtonTapped:" destination="7RS-8U-awS" id="xUR-QU-RDI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="feedView" destination="J6x-aj-MYZ" id="IwX-WK-QUL"/>
                         <segue destination="thj-he-tMf" kind="show" id="Eg8-7x-369"/>
@@ -145,4 +151,7 @@
             <point key="canvasLocation" x="1413" y="110"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="add" width="30" height="30"/>
+    </resources>
 </document>
