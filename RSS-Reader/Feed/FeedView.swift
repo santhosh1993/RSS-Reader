@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum SegmentState:Int {
+    case New = 0
+    case Reading = 1
+    case Finished = 2
+}
+
 protocol FeedCellDataSource {
     var feedtitle:String {get}
 }
@@ -23,7 +29,7 @@ protocol  FeedSectionHeaderDelegate{
 
 protocol FeedViewDataSource: class  {
     var numberOfSections:Int{get}
-    
+    var segmentState:SegmentState{get}
     func numberOfRows(for section:Int) -> Int
     func getDataForRow(for indexPath:IndexPath) -> FeedCellDataSource
     func getDataForSectionHeader(for section:Int) -> FeedSectionHeaderDataSource
@@ -32,16 +38,25 @@ protocol FeedViewDataSource: class  {
 protocol FeedViewDelegate: class {
     func expandBtnTapped(section:Int)
     func itemDidSelect(indexPath: IndexPath)
+    func segmentStateChanged(state:SegmentState)
 }
 
 class FeedView: UIView {
 
+    @IBOutlet weak var noResultsLbl: UILabel!
     @IBOutlet weak var feedCollectionView: UICollectionView!
+    @IBOutlet weak var segmentVw: UISegmentedControl!
 
     weak var dataSource:FeedViewDataSource?
     weak var delegate:FeedViewDelegate?
     
+    @IBAction func segmentValueChanged(_ sender: UISegmentedControl) {
+        delegate?.segmentStateChanged(state: SegmentState(rawValue: sender.selectedSegmentIndex) ?? SegmentState.New)
+    }
+    
     func reloadData(){
+        noResultsLbl.isHidden = (dataSource?.numberOfSections != 0)
+        segmentVw.selectedSegmentIndex = dataSource?.segmentState.rawValue ?? 0
         feedCollectionView.reloadData()
     }
 }

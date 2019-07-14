@@ -19,15 +19,32 @@ protocol FeedViewModelDelegate: class {
 
 class FeedViewModel {
     weak var delegate:FeedViewModelDelegate?
+    var segmentState: SegmentState = SegmentState.New
     
     var rssFeeds:[FeedSource] = []
     
     func getTheFeed() {
         rssFeeds = []
         let feeds = RSSDataLoader.getRSSFeeds()
+        
         for each in feeds {
-            rssFeeds.append(FeedSource(data: each))
+            let source = FeedSource(data: each, filter: { (object) in
+                switch segmentState {
+                case .New:
+                    return !(object.isOpened || object.isDone)
+                case .Finished:
+                    return object.isDone
+                case .Reading:
+                    return object.isOpened && !object.isDone
+                }
+            })
+            
+            if (source.feed.count > 0){
+                rssFeeds.append(source)
+            }
         }
+        
+        rssFeeds.first?.isExpanded = true
     }
     
     func expandedBtnTapped(section:Int){
@@ -44,6 +61,12 @@ class FeedViewModel {
         RSSDataLoader.updateTheState(for: feed, isDone: nil, isOpened: true)
         delegate?.pushTheFeedDetailView(feed: feed)
     }
+    
+    func segmentStateChanged(state: SegmentState) {
+        segmentState = state
+        getTheFeed()
+        delegate?.reloadData()
+    }
 }
 
 extension FeedViewModel: RSSFeederLoginCallBack{
@@ -52,9 +75,11 @@ extension FeedViewModel: RSSFeederLoginCallBack{
     }
     
     func userSuccessfullyAuthenticated() {
-        delegate?.showLoader()
-        RSSDataLoader.setTheCallBack(with: self)
-        RSSDataLoader.updateTheFeed()
+        DispatchQueue.main.async { [weak self] in
+            self?.delegate?.showLoader()
+            RSSDataLoader.setTheCallBack(with: self!)
+            RSSDataLoader.updateTheFeed()
+        }
     }
 }
 
@@ -74,6 +99,7 @@ extension FeedViewModel: RSSDataLoaderProtocol{
 }
 
 extension FeedViewModel: FeedViewDataSource {
+    
     var numberOfSections: Int {
         return rssFeeds.count
     }

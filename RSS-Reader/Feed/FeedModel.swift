@@ -20,10 +20,15 @@ class FeedSource:FeedSectionHeaderDataSource {
         }
     }
     
-    init(data:RSSFeedsProtocol) {
+    init(data:RSSFeedsProtocol, filter:((RSSFeedProtocol) -> Bool)) {
         title = data.title ?? ""
         url = data.url ?? ""
-        self.updateFeed(rssFeed: (data.feed?.allObjects as? [RSSFeedProtocol] ?? []))
+        
+        let feedArray = (data.feed?.allObjects as? [RSSFeedProtocol])?.filter({ (object) -> Bool in
+            return filter(object)
+        })
+        
+        self.updateFeed(rssFeed: feedArray ?? [])
     }
     
     func updateFeed(rssFeed:[RSSFeedProtocol]) {
@@ -61,6 +66,14 @@ extension Feed: RSSFeedProtocol{
     
     var guid: String? {
         return feed.guid
+    }
+    
+    var isDone: Bool {
+        return feed.isDone
+    }
+    
+    var isOpened: Bool {
+        return feed.isOpened
     }
 }
 

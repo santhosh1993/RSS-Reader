@@ -78,6 +78,10 @@ extension FeedViewController: FeedViewModelDelegate{
 }
 
 extension FeedViewController: FeedViewDelegate {
+    func segmentStateChanged(state: SegmentState) {
+        viewModel.segmentStateChanged(state: state)
+    }
+    
     func expandBtnTapped(section: Int) {
         viewModel.expandedBtnTapped(section: section)
     }
