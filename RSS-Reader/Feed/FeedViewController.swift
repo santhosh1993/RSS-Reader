@@ -59,7 +59,7 @@ class FeedViewController: BaseViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? FeedDetailViewController {
-            vc.feed = feed
+            vc.feedForDetail(feed)
         }
     }
     

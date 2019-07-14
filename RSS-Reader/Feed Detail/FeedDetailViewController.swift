@@ -10,40 +10,42 @@ import UIKit
 import WebKit
 
 class FeedDetailViewController: BaseViewController {
-    var feed:Feed?
     @IBOutlet weak var webVw: WKWebView!
     @IBOutlet weak var loadErrorView: UILabel!
+    var viewModel: FeedDetailViewModel = FeedDetailViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel.delegate = self
         webVw.uiDelegate = self
         webVw.navigationDelegate = self
-        DispatchQueue.main.async {[weak self] in
-            self?.loadRequest()
-        }
+        viewModel.feedGotUpdated()
         // Do any additional setup after loading the view.
     }
     
-    func loadRequest() {
-        if let url = URL.init(string: feed?.redirectionUrl ?? "") {
-            showLoader()
-            let request = URLRequest.init(url: url)
-            webVw.load(request)
-        }
-        else {
-            loadErrorView.isHidden = false
-        }
+    func feedForDetail(_ feed: Feed?){
+        viewModel.setTheFeed(feed: feed)
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func doneBtnTapped(_ sender: UIBarButtonItem) {
+        viewModel.doneBtnTapped()
     }
-    */
+}
 
+extension FeedDetailViewController : FeedDetailViewModelDelegate {
+    func popTheViewController() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func unLoadErrorView(isHidden: Bool) {
+        loadErrorView.isHidden = isHidden
+    }
+    
+    func loadRequest(url: URL) {
+        let request = URLRequest.init(url: url)
+        webVw.load(request)
+    }
 }
 
 extension FeedDetailViewController: WKUIDelegate{
@@ -56,6 +58,6 @@ extension FeedDetailViewController: WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        hideLoader()
+        viewModel.urlIsLoaded()
     }
 }

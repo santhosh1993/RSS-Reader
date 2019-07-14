@@ -51,8 +51,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="237"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFc-fP-wpp">
-                                                    <rect key="frame" x="145" y="96" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFc-fP-wpp">
+                                                    <rect key="frame" x="145" y="96" width="115" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -60,8 +60,9 @@
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="iFc-fP-wpp" secondAttribute="trailing" constant="10" id="GM7-hw-Plp"/>
                                             <constraint firstItem="iFc-fP-wpp" firstAttribute="centerY" secondItem="gK4-Z0-maA" secondAttribute="centerY" id="bdX-sX-omT"/>
-                                            <constraint firstItem="iFc-fP-wpp" firstAttribute="centerX" secondItem="gK4-Z0-maA" secondAttribute="centerX" id="f2L-MT-hwq"/>
+                                            <constraint firstItem="iFc-fP-wpp" firstAttribute="leading" secondItem="gK4-Z0-maA" secondAttribute="leading" constant="10" id="nt9-NT-I5H"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="titleLbl" destination="iFc-fP-wpp" id="qm1-xM-yfe"/>
@@ -233,6 +234,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gel-CQ-nXy"/>
                     </view>
+                    <navigationItem key="navigationItem" id="0yn-lv-PO1">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="NgL-Pr-Dle">
+                            <connections>
+                                <action selector="doneBtnTapped:" destination="thj-he-tMf" id="hfi-SL-L4W"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="loadErrorView" destination="5JL-Xc-ZOM" id="dRK-xN-crk"/>
                         <outlet property="webVw" destination="EZF-Ej-hmM" id="nio-PA-DRr"/>

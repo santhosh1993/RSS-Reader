@@ -41,6 +41,7 @@ class FeedViewModel {
     
     func itemSelected(indexPath:IndexPath) {
         let feed = rssFeeds[indexPath.section].feed[indexPath.row]
+        RSSDataLoader.updateTheState(for: feed, isDone: nil, isOpened: true)
         delegate?.pushTheFeedDetailView(feed: feed)
     }
 }

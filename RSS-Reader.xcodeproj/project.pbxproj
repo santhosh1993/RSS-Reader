@@ -24,6 +24,7 @@
 		B5C9717222DA104F000BE928 /* FeedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C9717122DA104F000BE928 /* FeedDetailViewController.swift */; };
 		B5C9717722DA2829000BE928 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C9717622DA2829000BE928 /* BaseViewController.swift */; };
 		B5C9717B22DA289F000BE928 /* LoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C9717922DA289F000BE928 /* LoaderViewController.swift */; };
+		B5C9717E22DB10F3000BE928 /* FeedDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C9717D22DB10F3000BE928 /* FeedDetailViewModel.swift */; };
 		B5CF275122D33CB000E4979B /* RSSDataLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5CF274122D33C9D00E4979B /* RSSDataLoader.framework */; };
 		B5CF275222D33CB000E4979B /* RSSDataLoader.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5CF274122D33C9D00E4979B /* RSSDataLoader.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B5CF275522D33CB000E4979B /* RSSFeederLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5CF273822D33C9700E4979B /* RSSFeederLogin.framework */; };
@@ -128,6 +129,7 @@
 		B5C9717122DA104F000BE928 /* FeedDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailViewController.swift; sourceTree = "<group>"; };
 		B5C9717622DA2829000BE928 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B5C9717922DA289F000BE928 /* LoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderViewController.swift; sourceTree = "<group>"; };
+		B5C9717D22DB10F3000BE928 /* FeedDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailViewModel.swift; sourceTree = "<group>"; };
 		B5CF273222D33C9700E4979B /* RSSFeederLogin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RSSFeederLogin.xcodeproj; path = ../RSSFeederLogin/RSSFeederLogin.xcodeproj; sourceTree = "<group>"; };
 		B5CF273B22D33C9D00E4979B /* RSSDataLoader.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RSSDataLoader.xcodeproj; path = ../RSSDataLoader/RSSDataLoader.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -234,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				B5C9717122DA104F000BE928 /* FeedDetailViewController.swift */,
+				B5C9717D22DB10F3000BE928 /* FeedDetailViewModel.swift */,
 			);
 			path = "Feed Detail";
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				B568EBF1229E5DDC002C67DA /* RSS_Reader.xcdatamodeld in Sources */,
 				B5C9716322D74BBF000BE928 /* FeedViewController.swift in Sources */,
 				B5C9717B22DA289F000BE928 /* LoaderViewController.swift in Sources */,
+				B5C9717E22DB10F3000BE928 /* FeedDetailViewModel.swift in Sources */,
 				B5C9716722D74D78000BE928 /* FeedView.swift in Sources */,
 				B5C9716922D764DF000BE928 /* FeedSectionCollectionReusableView.swift in Sources */,
 				B568EBE9229E5DDC002C67DA /* AppDelegate.swift in Sources */,

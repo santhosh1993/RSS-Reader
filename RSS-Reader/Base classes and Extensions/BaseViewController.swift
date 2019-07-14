@@ -18,20 +18,25 @@ class BaseViewController: UIViewController {
     
     func showLoader() {
         DispatchQueue.main.async { [weak self] in
-            self?.hideLoader()
+            self?.removeTheLoader()
             if let vC = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "LoaderViewControllerIdentifier") as? LoaderViewController {
                 self?.loaderVC = vC
                 self?.addChild(vC)
                 self?.view.addSubview(self!.loaderVC!.view)
+                self?.view.bringSubviewToFront(self!.loaderVC!.view)
             }
         }
     }
     
     func hideLoader() {
         DispatchQueue.main.async { [weak self] in
-            self?.loaderVC?.view.removeFromSuperview()
-            self?.loaderVC?.removeFromParent()
+            self?.removeTheLoader()
         }
+    }
+    
+    private func removeTheLoader(){
+        loaderVC?.view.removeFromSuperview()
+        loaderVC?.removeFromParent()
     }
 
 }
