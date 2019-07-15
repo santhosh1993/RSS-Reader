@@ -259,6 +259,9 @@
                                 <state key="normal" title="Launch on Safari">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="launchSafariApp:" destination="thj-he-tMf" eventType="touchDown" id="epf-aA-mdw"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

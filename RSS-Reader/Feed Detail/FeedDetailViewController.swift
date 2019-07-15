@@ -52,6 +52,14 @@ class FeedDetailViewController: BaseViewController {
     @IBAction func refreshButtonTapped(_ sender: Any) {
         webVw.reload()
     }
+    
+    @IBAction func launchSafariApp(_ sender: UIButton) {
+        if let url = webVw.url{
+            UIApplication.shared.open(url) { (status) in
+                
+            }
+        }
+    }
 }
 
 extension FeedDetailViewController: URLSessionTaskDelegate {
