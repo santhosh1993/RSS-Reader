@@ -12,12 +12,16 @@ import WebKit
 class FeedDetailViewController: BaseViewController {
     @IBOutlet weak var webVw: WKWebView!
     @IBOutlet weak var loadErrorView: UILabel!
+    @IBOutlet weak var farwordButton: UIBarButtonItem!
+    @IBOutlet weak var backButton: UIBarButtonItem!
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
+    
     var viewModel: FeedDetailViewModel = FeedDetailViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         viewModel.delegate = self
+    
         webVw.uiDelegate = self
         webVw.navigationDelegate = self
         viewModel.feedGotUpdated()
@@ -30,6 +34,29 @@ class FeedDetailViewController: BaseViewController {
 
     @IBAction func doneBtnTapped(_ sender: UIBarButtonItem) {
         viewModel.doneBtnTapped()
+    }
+    
+    @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
+        if (webVw.canGoBack){
+            webVw.goBack()
+        }
+        else{
+            popTheViewController()
+        }
+    }
+    
+    @IBAction func farwordButtonTapped(_ sender: UIBarButtonItem) {
+        webVw.goForward()
+    }
+    
+    @IBAction func refreshButtonTapped(_ sender: Any) {
+        webVw.reload()
+    }
+}
+
+extension FeedDetailViewController: URLSessionTaskDelegate {
+    func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) {
+        print("***")
     }
 }
 

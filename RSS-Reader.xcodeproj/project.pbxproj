@@ -222,12 +222,12 @@
 		B5C9715F22D74BA3000BE928 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				B5C9716222D74BBF000BE928 /* FeedViewController.swift */,
+				B5C9716C22D89346000BE928 /* FeedModel.swift */,
 				B5C9716422D74C77000BE928 /* FeedViewModel.swift */,
+				B5C9716222D74BBF000BE928 /* FeedViewController.swift */,
 				B5C9716622D74D78000BE928 /* FeedView.swift */,
 				B5C9716822D764DF000BE928 /* FeedSectionCollectionReusableView.swift */,
 				B5C9716A22D769E6000BE928 /* FeedCollectionViewCell.swift */,
-				B5C9716C22D89346000BE928 /* FeedModel.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";

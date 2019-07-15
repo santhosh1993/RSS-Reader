@@ -236,7 +236,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZF-Ej-hmM">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="734"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -244,20 +244,33 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unable to Load the Request" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5JL-Xc-ZOM">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="734"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zQb-6G-6zd">
+                                <rect key="frame" x="0.0" y="822" width="414" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="hWs-ge-hiN"/>
+                                </constraints>
+                                <state key="normal" title="Launch on Safari">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="zQb-6G-6zd" firstAttribute="top" secondItem="EZF-Ej-hmM" secondAttribute="bottom" id="9Zt-1x-vgI"/>
                             <constraint firstItem="EZF-Ej-hmM" firstAttribute="leading" secondItem="gel-CQ-nXy" secondAttribute="leading" id="Bje-1W-Hte"/>
                             <constraint firstItem="5JL-Xc-ZOM" firstAttribute="top" secondItem="EZF-Ej-hmM" secondAttribute="top" id="Da6-lu-6AG"/>
+                            <constraint firstItem="zQb-6G-6zd" firstAttribute="leading" secondItem="gel-CQ-nXy" secondAttribute="leading" id="FcB-xA-14t"/>
+                            <constraint firstItem="gel-CQ-nXy" firstAttribute="bottom" secondItem="zQb-6G-6zd" secondAttribute="bottom" id="X3x-7W-2ch"/>
                             <constraint firstItem="gel-CQ-nXy" firstAttribute="trailing" secondItem="EZF-Ej-hmM" secondAttribute="trailing" id="aPW-9x-7Eo"/>
                             <constraint firstItem="EZF-Ej-hmM" firstAttribute="top" secondItem="gel-CQ-nXy" secondAttribute="top" id="caa-hF-Mj2"/>
-                            <constraint firstItem="gel-CQ-nXy" firstAttribute="bottom" secondItem="EZF-Ej-hmM" secondAttribute="bottom" id="egQ-c1-W9s"/>
+                            <constraint firstItem="gel-CQ-nXy" firstAttribute="trailing" secondItem="zQb-6G-6zd" secondAttribute="trailing" id="ezq-Un-32b"/>
                             <constraint firstItem="5JL-Xc-ZOM" firstAttribute="trailing" secondItem="EZF-Ej-hmM" secondAttribute="trailing" id="gyO-cf-BZq"/>
                             <constraint firstItem="5JL-Xc-ZOM" firstAttribute="leading" secondItem="EZF-Ej-hmM" secondAttribute="leading" id="hyg-LC-XDL"/>
                             <constraint firstItem="5JL-Xc-ZOM" firstAttribute="bottom" secondItem="EZF-Ej-hmM" secondAttribute="bottom" id="zGt-bD-Lna"/>
@@ -265,6 +278,23 @@
                         <viewLayoutGuide key="safeArea" id="gel-CQ-nXy"/>
                     </view>
                     <navigationItem key="navigationItem" id="0yn-lv-PO1">
+                        <leftBarButtonItems>
+                            <barButtonItem image="back" id="qrD-d4-TLf">
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="thj-he-tMf" id="Aux-zc-NpG"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="farword" id="2VW-Ha-4oB">
+                                <connections>
+                                    <action selector="farwordButtonTapped:" destination="thj-he-tMf" id="GHM-sd-twy"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="refresh" id="jS9-Nc-96G">
+                                <connections>
+                                    <action selector="refreshButtonTapped:" destination="thj-he-tMf" id="LN7-0U-Iff"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Done" id="NgL-Pr-Dle">
                             <connections>
                                 <action selector="doneBtnTapped:" destination="thj-he-tMf" id="hfi-SL-L4W"/>
@@ -272,7 +302,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="backButton" destination="qrD-d4-TLf" id="ytP-cS-Cga"/>
+                        <outlet property="farwordButton" destination="2VW-Ha-4oB" id="qDG-Pd-kmQ"/>
                         <outlet property="loadErrorView" destination="5JL-Xc-ZOM" id="dRK-xN-crk"/>
+                        <outlet property="refreshButton" destination="jS9-Nc-96G" id="MKd-tZ-3Qq"/>
                         <outlet property="webVw" destination="EZF-Ej-hmM" id="nio-PA-DRr"/>
                     </connections>
                 </viewController>
@@ -283,5 +316,8 @@
     </scenes>
     <resources>
         <image name="add" width="30" height="30"/>
+        <image name="back" width="30" height="30"/>
+        <image name="farword" width="30" height="30"/>
+        <image name="refresh" width="30" height="30"/>
     </resources>
 </document>
