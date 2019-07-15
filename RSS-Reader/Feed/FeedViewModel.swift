@@ -67,6 +67,18 @@ class FeedViewModel {
         getTheFeed()
         delegate?.reloadData()
     }
+    
+    func shakeGestureDetected() {
+        refeshTheData()
+    }
+    
+    private func refeshTheData() {
+        DispatchQueue.main.async { [weak self] in
+            self?.delegate?.showLoader()
+            RSSDataLoader.setTheCallBack(with: self!)
+            RSSDataLoader.updateTheFeed()
+        }
+    }
 }
 
 extension FeedViewModel: RSSFeederLoginCallBack{
@@ -75,11 +87,7 @@ extension FeedViewModel: RSSFeederLoginCallBack{
     }
     
     func userSuccessfullyAuthenticated() {
-        DispatchQueue.main.async { [weak self] in
-            self?.delegate?.showLoader()
-            RSSDataLoader.setTheCallBack(with: self!)
-            RSSDataLoader.updateTheFeed()
-        }
+        refeshTheData()
     }
 }
 

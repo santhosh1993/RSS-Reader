@@ -39,4 +39,13 @@ class BaseViewController: UIViewController {
         loaderVC?.removeFromParent()
     }
 
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake{
+            shakeGestureDetected()
+        }
+    }
+    
+    func shakeGestureDetected(){
+        
+    }
 }

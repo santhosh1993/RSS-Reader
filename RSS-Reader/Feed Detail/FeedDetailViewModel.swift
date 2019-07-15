@@ -15,6 +15,7 @@ protocol FeedDetailViewModelDelegate: class {
     func showLoader()
     func hideLoader()
     func popTheViewController()
+    func reloadData()
 }
 
 class FeedDetailViewModel {
@@ -50,5 +51,9 @@ class FeedDetailViewModel {
     func urlFailedToLoad() {
         delegate?.hideLoader()
         delegate?.unLoadErrorView(isHidden: false)
+    }
+    
+    func shakeGestureDetected(){
+        delegate?.reloadData()
     }
 }

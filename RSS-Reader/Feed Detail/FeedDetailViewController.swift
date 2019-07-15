@@ -60,11 +60,9 @@ class FeedDetailViewController: BaseViewController {
             }
         }
     }
-}
-
-extension FeedDetailViewController: URLSessionTaskDelegate {
-    func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) {
-        print("***")
+    
+    override func shakeGestureDetected() {
+        viewModel.shakeGestureDetected()
     }
 }
 
@@ -80,6 +78,10 @@ extension FeedDetailViewController : FeedDetailViewModelDelegate {
     func loadRequest(url: URL) {
         let request = URLRequest.init(url: url)
         webVw.load(request)
+    }
+    
+    func reloadData() {
+        webVw.reload()
     }
 }
 

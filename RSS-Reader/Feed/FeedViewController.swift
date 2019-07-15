@@ -63,6 +63,10 @@ class FeedViewController: BaseViewController {
         }
     }
     
+    override func shakeGestureDetected() {
+        viewModel.shakeGestureDetected()
+    }
+    
 }
 
 extension FeedViewController: FeedViewModelDelegate{
