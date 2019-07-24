@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Reader Navigation View Controller-->
         <scene sceneID="ing-xO-NzE">
             <objects>
-                <navigationController id="bv1-EM-kjc" sceneMemberID="viewController">
+                <navigationController id="bv1-EM-kjc" customClass="RSSReaderNavigationViewController" customModule="RSS_Reader" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HeY-nw-4Nb">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -163,7 +163,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="feedView" destination="J6x-aj-MYZ" id="IwX-WK-QUL"/>
+                        <outlet property="feedView" destination="J6x-aj-MYZ" id="7gw-JN-vOE"/>
                         <segue destination="thj-he-tMf" kind="show" identifier="FeedListToFeedDetailViewIdentifier" id="Eg8-7x-369"/>
                         <segue destination="Bak-uQ-VxU" kind="show" identifier="FeedToSettingsViewIdentifier" id="Xst-Qq-T2w"/>
                     </connections>
@@ -394,7 +394,13 @@
                             <outlet property="settingsTableView" destination="3gX-bC-txo" id="yZr-cE-27S"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Setttings" id="OZr-Aj-ysh"/>
+                    <navigationItem key="navigationItem" title="Setttings" id="OZr-Aj-ysh">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="TeE-Q6-7CZ">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="Bak-uQ-VxU" id="JKg-EC-yns"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="settingsView" destination="mlU-ex-xxe" id="Xu9-7M-xuZ"/>
                     </connections>

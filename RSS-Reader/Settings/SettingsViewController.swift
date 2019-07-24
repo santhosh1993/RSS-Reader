@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: BaseViewController {
 
     @IBOutlet var settingsView: SettingsView!
     let viewModel = SettingsViewModel()
@@ -21,28 +21,25 @@ class SettingsViewController: UIViewController {
         settingsView.updateUI()
         // Do any additional setup after loading the view.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
+        viewModel.saveTheUpdatedSettings()
     }
-    */
-
+    
 }
 
 extension SettingsViewController: SettingsViewDelegate {
-    func switchStatusChanged(index: Int) {
-        viewModel.settingStatusChanged(index: index)
+    func switchStatusChanged(indexPath: IndexPath) {
+        viewModel.settingStatusChanged(indexPath: indexPath)
     }
 }
 
 extension SettingsViewController: SettingsViewModelDelegate {
     func dataUpdated() {
         settingsView.updateUI()
+    }
+    
+    func popTheController() {
+        navigationController?.popViewController(animated: true)
     }
 }

@@ -48,4 +48,17 @@ class BaseViewController: UIViewController {
     func shakeGestureDetected(){
         
     }
+    
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction.init(title: "OK", style: .default) { (action) in
+            
+        }
+        
+        alert.addAction(action)
+        UIApplication.shared.delegate?.window??.rootViewController?.present(alert, animated: true, completion: {
+            
+        })
+    }
+    
 }

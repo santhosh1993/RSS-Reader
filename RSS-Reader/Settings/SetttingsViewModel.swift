@@ -7,52 +7,51 @@
 //
 
 import Foundation
+import RSSDataLoader
 
 protocol SettingsViewModelDelegate: class {
     func dataUpdated()
-}
-
-class Setting:SettingCellDataSource {
-    var title: String
-    var switchStatus: Bool
-    
-    init(title: String, switchStatus: Bool) {
-        self.title = title
-        self.switchStatus = switchStatus
-    }
+    func showAlert(title: String, message: String)
+    func popTheController()
 }
 
 class SettingsViewModel {
-    var settingList:[Setting] = []
+    var sectionList:[Section] = []
     weak var delegate: SettingsViewModelDelegate?
+    
     init() {
-        for i in 0...5{
-            let setting = Setting(title: "\(i)", switchStatus: false)
-            settingList.append(setting)
+        sectionList.append(DeleteRuleSection())
+    }
+    
+    func resetSatusOfSetting(index:Int) {
+        if let section = sectionList[index] as? DeleteRuleSection{
+            section.resetSatusOfSetting()
         }
     }
     
-    func resetSatusOfSetting() {
-        for each in settingList {
-            each.switchStatus = false
+    func settingStatusChanged(indexPath: IndexPath) {
+        if let section = sectionList[indexPath.section] as? DeleteRuleSection{
+            section.settingStatusChanged(index: indexPath.row)
+            delegate?.dataUpdated()
         }
     }
     
-    func settingStatusChanged(index: Int) {
-        if settingList[index].switchStatus {
-            settingList[index].switchStatus = false
+    func saveTheUpdatedSettings() {
+        for each in sectionList {
+            let result = each.saveTheSettings()
+            if let result = result as? DeleteRule {
+                RSSDataLoader.deleteFeedDate(before: result.getDate())
+                DispatchQueue.main.async { [weak self] in
+                    self?.delegate?.popTheController()
+                    self?.delegate?.showAlert(title: "Data Got Deleted", message: "Feed with less than \(result.inDays()) got deleted")
+                }
+            }
         }
-        else{
-            resetSatusOfSetting()
-            settingList[index].switchStatus = true
-        }
-        
-        delegate?.dataUpdated()
     }
 }
 
 extension SettingsViewModel: SettingsViewDataSource {
-    var settings: [SettingCellDataSource] {
-        return settingList
+    var sections: [SettingSectionDataSource] {
+        return sectionList
     }
 }

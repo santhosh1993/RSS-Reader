@@ -12,10 +12,10 @@ import RSSDataLoader
 
 class FeedViewController: BaseViewController {
 
+    @IBOutlet var feedView: FeedView!
+    
     let viewModel: FeedViewModel = FeedViewModel()
     var feed: Feed?
-    
-    @IBOutlet var feedView: FeedView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

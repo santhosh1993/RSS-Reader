@@ -23,6 +23,12 @@ class FeedViewModel {
     
     var rssFeeds:[FeedSource] = []
     
+    init() {
+        if let date = DeleteRule.selectedState()?.getDate(){
+            RSSDataLoader.deleteFeedDate(before: date)
+        }
+    }
+    
     func getTheFeed() {
         rssFeeds = []
         let feeds = RSSDataLoader.getRSSFeeds()

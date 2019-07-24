@@ -15,6 +15,8 @@
 		B50D447922E6EB3C00C5D0E8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50D447822E6EB3C00C5D0E8 /* SettingsView.swift */; };
 		B50D447B22E731D200C5D0E8 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50D447A22E731D200C5D0E8 /* SettingsTableViewCell.swift */; };
 		B50D447D22E7349A00C5D0E8 /* SetttingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50D447C22E7349A00C5D0E8 /* SetttingsViewModel.swift */; };
+		B50D447F22E85CFB00C5D0E8 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50D447E22E85CFB00C5D0E8 /* SettingsModel.swift */; };
+		B50D448122E89C4E00C5D0E8 /* RSSReaderNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50D448022E89C4E00C5D0E8 /* RSSReaderNavigationViewController.swift */; };
 		B53423BE22DF05E300FB37B7 /* Notes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53423B922DF05D900FB37B7 /* Notes.framework */; };
 		B53423BF22DF05E300FB37B7 /* Notes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B53423B922DF05D900FB37B7 /* Notes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B568EBE9229E5DDC002C67DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B568EBE8229E5DDC002C67DA /* AppDelegate.swift */; };
@@ -140,6 +142,8 @@
 		B50D447822E6EB3C00C5D0E8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B50D447A22E731D200C5D0E8 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		B50D447C22E7349A00C5D0E8 /* SetttingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetttingsViewModel.swift; sourceTree = "<group>"; };
+		B50D447E22E85CFB00C5D0E8 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		B50D448022E89C4E00C5D0E8 /* RSSReaderNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSReaderNavigationViewController.swift; sourceTree = "<group>"; };
 		B53423B322DF05D900FB37B7 /* Notes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Notes.xcodeproj; path = ../Notes/Notes.xcodeproj; sourceTree = "<group>"; };
 		B568EBE5229E5DDC002C67DA /* RSS-Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RSS-Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B568EBE8229E5DDC002C67DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -216,6 +220,7 @@
 		B50D447222E6EA6D00C5D0E8 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				B50D447E22E85CFB00C5D0E8 /* SettingsModel.swift */,
 				B50D447C22E7349A00C5D0E8 /* SetttingsViewModel.swift */,
 				B50D447622E6EA8900C5D0E8 /* SettingsViewController.swift */,
 				B50D447822E6EB3C00C5D0E8 /* SettingsView.swift */,
@@ -319,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				B5C9717622DA2829000BE928 /* BaseViewController.swift */,
+				B50D448022E89C4E00C5D0E8 /* RSSReaderNavigationViewController.swift */,
 			);
 			path = "Base classes and Extensions";
 			sourceTree = "<group>";
@@ -525,7 +531,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B50D447F22E85CFB00C5D0E8 /* SettingsModel.swift in Sources */,
 				B50D447922E6EB3C00C5D0E8 /* SettingsView.swift in Sources */,
+				B50D448122E89C4E00C5D0E8 /* RSSReaderNavigationViewController.swift in Sources */,
 				B5C9716522D74C77000BE928 /* FeedViewModel.swift in Sources */,
 				B5C9716D22D89346000BE928 /* FeedModel.swift in Sources */,
 				B5C9717722DA2829000BE928 /* BaseViewController.swift in Sources */,

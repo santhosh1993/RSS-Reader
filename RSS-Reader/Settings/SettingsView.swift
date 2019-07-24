@@ -14,12 +14,17 @@ protocol SettingCellDataSource {
     var switchStatus:Bool {get}
 }
 
-protocol SettingsViewDataSource: class {
+protocol SettingSectionDataSource {
+    var title:String{get}
     var settings:[SettingCellDataSource] {get}
 }
 
+protocol SettingsViewDataSource: class {
+    var sections:[SettingSectionDataSource] {get}
+}
+
 protocol  SettingsViewDelegate: class{
-    func switchStatusChanged(index: Int)
+    func switchStatusChanged(indexPath: IndexPath)
 }
 
 class SettingHeaderView : UITableViewHeaderFooterView {
@@ -61,11 +66,11 @@ class SettingsView: UIView {
 
 extension SettingsView: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return dataSource?.sections.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource?.settings.count ?? 0
+        return dataSource?.sections[section].settings.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -74,7 +79,7 @@ extension SettingsView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let headerview = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SettingHeaderIdentifier") as? SettingHeaderView {
-            headerview.setTitle(title: "Delete Rule")
+            headerview.setTitle(title: dataSource?.sections[section].title ?? "")
             return headerview
         }
         return nil
@@ -88,7 +93,7 @@ extension SettingsView: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingCellIdentifier", for: indexPath) as! SettingsTableViewCell
         cell.delegate = self
         cell.indexPath = indexPath
-        cell.updateUI(data: dataSource?.settings[indexPath.row])
+        cell.updateUI(data: dataSource?.sections[indexPath.section].settings[indexPath.row])
         
         return cell
     }
@@ -104,7 +109,7 @@ extension SettingsView: UITableViewDelegate {
 extension SettingsView: SettingsTableViewCellDelegate {
     func switchStatusChanged(indexPath: IndexPath?) {
         if let indexPath = indexPath {
-            delegate?.switchStatusChanged(index: indexPath.row)
+            delegate?.switchStatusChanged(indexPath: indexPath)
         }
     }
 }
