@@ -16,6 +16,7 @@ protocol FeedDetailViewModelDelegate: class {
     func hideLoader()
     func popTheViewController()
     func reloadData()
+    func addNotes(title:String, description: String,key: String)
 }
 
 class FeedDetailViewModel {
@@ -55,5 +56,9 @@ class FeedDetailViewModel {
     
     func shakeGestureDetected(){
         delegate?.reloadData()
+    }
+    
+    func addNotesButtonTapped() {
+        delegate?.addNotes(title: feed?.title ?? "", description: feed?.feedDescription ?? "",key:  feed?.redirectionUrl ?? feed?.guid ?? "")
     }
 }

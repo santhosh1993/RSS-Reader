@@ -57,6 +57,10 @@ class FeedViewController: BaseViewController {
         }
     }
     
+    @IBAction func settingsButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "FeedToSettingsViewIdentifier", sender: self)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? FeedDetailViewController {
             vc.feedForDetail(feed)

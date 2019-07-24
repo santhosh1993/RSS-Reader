@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import Notes
 
 class FeedDetailViewController: BaseViewController {
     @IBOutlet weak var webVw: WKWebView!
@@ -32,6 +33,10 @@ class FeedDetailViewController: BaseViewController {
         viewModel.setTheFeed(feed: feed)
     }
 
+    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
+        viewModel.addNotesButtonTapped()
+    }
+    
     @IBAction func doneBtnTapped(_ sender: UIBarButtonItem) {
         viewModel.doneBtnTapped()
     }
@@ -63,6 +68,10 @@ class FeedDetailViewController: BaseViewController {
     
     override func shakeGestureDetected() {
         viewModel.shakeGestureDetected()
+    }
+    
+    func addNotes(title:String, description: String,key: String) {
+        Notes.addNotesWith(title: title, description: description,key: key)
     }
 }
 

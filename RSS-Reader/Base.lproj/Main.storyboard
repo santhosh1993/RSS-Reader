@@ -151,15 +151,21 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="nQa-Fo-Scc">
-                        <barButtonItem key="rightBarButtonItem" image="add" id="XUh-Vb-Lhc">
+                        <barButtonItem key="leftBarButtonItem" image="add" id="XUh-Vb-Lhc">
                             <connections>
                                 <action selector="addButtonTapped:" destination="7RS-8U-awS" id="xUR-QU-RDI"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="settings" id="h7I-V4-Tm4">
+                            <connections>
+                                <action selector="settingsButtonTapped:" destination="7RS-8U-awS" id="imo-3i-cZc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="feedView" destination="J6x-aj-MYZ" id="IwX-WK-QUL"/>
                         <segue destination="thj-he-tMf" kind="show" identifier="FeedListToFeedDetailViewIdentifier" id="Eg8-7x-369"/>
+                        <segue destination="Bak-uQ-VxU" kind="show" identifier="FeedToSettingsViewIdentifier" id="Xst-Qq-T2w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fis-iT-xgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -298,11 +304,18 @@
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="NgL-Pr-Dle">
-                            <connections>
-                                <action selector="doneBtnTapped:" destination="thj-he-tMf" id="hfi-SL-L4W"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Done" id="NgL-Pr-Dle">
+                                <connections>
+                                    <action selector="doneBtnTapped:" destination="thj-he-tMf" id="hfi-SL-L4W"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Add" id="FDv-Fm-zu0">
+                                <connections>
+                                    <action selector="addButtonTapped:" destination="thj-he-tMf" id="Am0-FZ-yP6"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="backButton" destination="qrD-d4-TLf" id="ytP-cS-Cga"/>
@@ -316,11 +329,86 @@
             </objects>
             <point key="canvasLocation" x="1410.144927536232" y="109.82142857142857"/>
         </scene>
+        <!--Setttings-->
+        <scene sceneID="cxn-2q-gPj">
+            <objects>
+                <viewController id="Bak-uQ-VxU" customClass="SettingsViewController" customModule="RSS_Reader" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mlU-ex-xxe" customClass="SettingsView" customModule="RSS_Reader" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3gX-bC-txo">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingCellIdentifier" rowHeight="77" id="aSn-ci-uab" customClass="SettingsTableViewCell" customModule="RSS_Reader" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="77"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aSn-ci-uab" id="bgj-aj-Gq2">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="76.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEj-Hy-BDF">
+                                                    <rect key="frame" x="10" y="27.5" width="44" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gXT-GG-yb7">
+                                                    <rect key="frame" x="355" y="23" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="switchStatusChanged:" destination="aSn-ci-uab" eventType="valueChanged" id="eyR-3k-Bot"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gXT-GG-yb7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JEj-Hy-BDF" secondAttribute="trailing" constant="8" symbolic="YES" id="68P-vk-De4"/>
+                                                <constraint firstItem="JEj-Hy-BDF" firstAttribute="centerY" secondItem="bgj-aj-Gq2" secondAttribute="centerY" id="GH4-ay-XZ3"/>
+                                                <constraint firstItem="JEj-Hy-BDF" firstAttribute="leading" secondItem="bgj-aj-Gq2" secondAttribute="leading" constant="10" id="T5q-sr-fbQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="gXT-GG-yb7" secondAttribute="trailing" constant="10" id="Z4d-Zc-awR"/>
+                                                <constraint firstItem="gXT-GG-yb7" firstAttribute="centerY" secondItem="bgj-aj-Gq2" secondAttribute="centerY" id="xeX-Sm-i3f"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="statusSwitch" destination="gXT-GG-yb7" id="sST-bY-8CA"/>
+                                            <outlet property="titleLbl" destination="JEj-Hy-BDF" id="QdU-j9-IGO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="mlU-ex-xxe" id="KaO-d0-b5h"/>
+                                    <outlet property="delegate" destination="mlU-ex-xxe" id="kyW-5y-AXI"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="3gX-bC-txo" firstAttribute="leading" secondItem="sh1-4U-9ca" secondAttribute="leading" id="Ga1-mn-uqQ"/>
+                            <constraint firstItem="3gX-bC-txo" firstAttribute="top" secondItem="sh1-4U-9ca" secondAttribute="top" id="I1g-8W-kxs"/>
+                            <constraint firstItem="sh1-4U-9ca" firstAttribute="trailing" secondItem="3gX-bC-txo" secondAttribute="trailing" id="K9E-Bi-Aqx"/>
+                            <constraint firstItem="3gX-bC-txo" firstAttribute="bottom" secondItem="sh1-4U-9ca" secondAttribute="bottom" id="nMa-jf-oiK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="sh1-4U-9ca"/>
+                        <connections>
+                            <outlet property="settingsTableView" destination="3gX-bC-txo" id="yZr-cE-27S"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" title="Setttings" id="OZr-Aj-ysh"/>
+                    <connections>
+                        <outlet property="settingsView" destination="mlU-ex-xxe" id="Xu9-7M-xuZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YVH-8i-ugc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1410.144927536232" y="850.44642857142856"/>
+        </scene>
     </scenes>
     <resources>
         <image name="add" width="30" height="30"/>
         <image name="back" width="30" height="30"/>
         <image name="farword" width="30" height="30"/>
         <image name="refresh" width="30" height="30"/>
+        <image name="settings" width="30" height="30"/>
     </resources>
 </document>
