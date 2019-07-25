@@ -44,11 +44,15 @@ protocol FeedViewDelegate: class {
 class FeedView: UIView {
 
     @IBOutlet weak var noResultsLbl: UILabel!
-    @IBOutlet weak var feedCollectionView: UICollectionView!
     @IBOutlet weak var segmentVw: UISegmentedControl!
-
+    @IBOutlet weak var feedListTableView: UITableView!
+    
     weak var dataSource:FeedViewDataSource?
     weak var delegate:FeedViewDelegate?
+    
+    override func awakeFromNib() {
+        feedListTableView.register(FeedListTableHeaderView.self, forHeaderFooterViewReuseIdentifier: FeedListTableHeaderView.reuseIdentifier)
+    }
     
     @IBAction func segmentValueChanged(_ sender: UISegmentedControl) {
         delegate?.segmentStateChanged(state: SegmentState(rawValue: sender.selectedSegmentIndex) ?? SegmentState.New)
@@ -57,41 +61,37 @@ class FeedView: UIView {
     func reloadData(){
         noResultsLbl.isHidden = (dataSource?.numberOfSections != 0)
         segmentVw.selectedSegmentIndex = dataSource?.segmentState.rawValue ?? 0
-        feedCollectionView.reloadData()
+        feedListTableView.reloadData()
     }
 }
 
-extension FeedView: UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+extension FeedView: UITableViewDataSource{
+    func numberOfSections(in tableView: UITableView) -> Int {
         return dataSource?.numberOfSections ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource?.numberOfRows(for: section) ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "FeedSectionCollectionReusableViewIdentifier", for: indexPath) as! FeedSectionCollectionReusableView
-            headerView.section = indexPath.section
-            headerView.delegate = self
-            if let data = dataSource?.getDataForSectionHeader(for: indexPath.section){
-                headerView.updateView(data: data)
-            }
-            
-            return headerView
-        default:
-            assertionFailure("Invalid view type")
-        }
-        
-        return UICollectionReusableView()
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return FeedListTableHeaderView.height
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeedCollectionViewCellIdentifier", for: indexPath) as! FeedCollectionViewCell
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: FeedListTableHeaderView.reuseIdentifier) as! FeedListTableHeaderView
+        headerView.section = section
+        headerView.delegate = self
+        
+        if let data = dataSource?.getDataForSectionHeader(for: section){
+            headerView.updateView(data: data)
+        }
+        
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: FeedListTableViewCell.reuseIdentifier, for: indexPath) as! FeedListTableViewCell
         
         if let data = dataSource?.getDataForRow(for: indexPath){
             cell.updateTheView(data: data)
@@ -99,12 +99,11 @@ extension FeedView: UICollectionViewDataSource {
         
         return cell
     }
-    
 }
 
-extension FeedView: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
+extension FeedView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         delegate?.itemDidSelect(indexPath: indexPath)
     }
 }
