@@ -97,4 +97,8 @@ extension FeedViewController: FeedViewDelegate {
     func itemDidSelect(indexPath: IndexPath) {
         viewModel.itemSelected(indexPath: indexPath)
     }
+    
+    func deleteActionOccurred(indexPath: IndexPath) {
+        viewModel.deleteData(indexPath: indexPath)
+    }
 }

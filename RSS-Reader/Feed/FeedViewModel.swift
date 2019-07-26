@@ -37,11 +37,11 @@ class FeedViewModel {
             let source = FeedSource(data: each, filter: { (object) in
                 switch segmentState {
                 case .New:
-                    return !(object.isOpened || object.isDone)
+                    return !(object.isOpened || object.isDone || object.isUnWanted)
                 case .Finished:
-                    return object.isDone
+                    return object.isDone && !object.isUnWanted
                 case .Reading:
-                    return object.isOpened && !object.isDone
+                    return object.isOpened && !object.isDone && !object.isUnWanted
                 }
             })
             
@@ -76,6 +76,12 @@ class FeedViewModel {
     
     func shakeGestureDetected() {
         refeshTheData()
+    }
+    
+    func deleteData(indexPath: IndexPath) {
+        if let guid = rssFeeds[indexPath.section].feed[indexPath.row].guid {
+            RSSDataLoader.deleteFeedData(guid: guid)
+        }
     }
     
     private func refeshTheData() {

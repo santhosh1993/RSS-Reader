@@ -16,6 +16,7 @@ enum SegmentState:Int {
 
 protocol FeedCellDataSource {
     var feedtitle:String {get}
+    var feedDescription:String? {get}
 }
 
 protocol FeedSectionHeaderDataSource {
@@ -39,6 +40,7 @@ protocol FeedViewDelegate: class {
     func expandBtnTapped(section:Int)
     func itemDidSelect(indexPath: IndexPath)
     func segmentStateChanged(state:SegmentState)
+    func deleteActionOccurred(indexPath: IndexPath)
 }
 
 class FeedView: UIView {
@@ -76,6 +78,13 @@ extension FeedView: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return FeedListTableHeaderView.height
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let action = UITableViewRowAction.init(style: UITableViewRowAction.Style.destructive, title: "Delete") { (action, indexPath) in
+            self.delegate?.deleteActionOccurred(indexPath: indexPath)
+        }
+        return [action]
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

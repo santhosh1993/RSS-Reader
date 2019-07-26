@@ -53,27 +53,38 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FeedListTableViewCellIdentifier" id="rhR-RY-J9J" customClass="FeedListTableViewCell" customModule="RSS_Reader" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FeedListTableViewCellIdentifier" rowHeight="158" id="rhR-RY-J9J" customClass="FeedListTableViewCell" customModule="RSS_Reader" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="158"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rhR-RY-J9J" id="Yr2-PC-ykA">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="157.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W40-eQ-urO">
-                                                    <rect key="frame" x="10" y="11.5" width="356" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W40-eQ-urO">
+                                                    <rect key="frame" x="10" y="10" width="356" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGl-zI-Lbt">
+                                                    <rect key="frame" x="10" y="39" width="356" height="108.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="W40-eQ-urO" secondAttribute="trailing" constant="10" id="0dh-by-t4E"/>
-                                                <constraint firstItem="W40-eQ-urO" firstAttribute="centerY" secondItem="Yr2-PC-ykA" secondAttribute="centerY" id="hmk-44-Y13"/>
+                                                <constraint firstAttribute="bottom" secondItem="bGl-zI-Lbt" secondAttribute="bottom" constant="10" id="EOQ-y9-06B"/>
+                                                <constraint firstItem="bGl-zI-Lbt" firstAttribute="leading" secondItem="W40-eQ-urO" secondAttribute="leading" id="Fit-uI-cAT"/>
+                                                <constraint firstItem="bGl-zI-Lbt" firstAttribute="trailing" secondItem="W40-eQ-urO" secondAttribute="trailing" id="JLK-Zh-AJO"/>
+                                                <constraint firstItem="bGl-zI-Lbt" firstAttribute="top" secondItem="W40-eQ-urO" secondAttribute="bottom" constant="5" id="PTX-MI-riz"/>
+                                                <constraint firstItem="W40-eQ-urO" firstAttribute="top" secondItem="Yr2-PC-ykA" secondAttribute="top" constant="10" id="mDz-KD-FHX"/>
                                                 <constraint firstItem="W40-eQ-urO" firstAttribute="leading" secondItem="Yr2-PC-ykA" secondAttribute="leading" constant="10" id="wp3-eb-Dkb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="descriptionLbl" destination="bGl-zI-Lbt" id="g2f-eF-sZc"/>
                                             <outlet property="titleLbl" destination="W40-eQ-urO" id="bt7-Et-sWk"/>
                                         </connections>
                                     </tableViewCell>

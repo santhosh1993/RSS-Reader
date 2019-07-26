@@ -75,6 +75,10 @@ extension Feed: RSSFeedProtocol{
     var isOpened: Bool {
         return feed.isOpened
     }
+    
+    var isUnWanted: Bool {
+        return feed.isUnWanted
+    }
 }
 
 extension Feed: FeedCellDataSource{

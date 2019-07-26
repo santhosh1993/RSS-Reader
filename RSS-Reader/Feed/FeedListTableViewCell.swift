@@ -45,9 +45,12 @@ class FeedListTableHeaderView : UITableViewHeaderFooterView {
 class FeedListTableViewCell: UITableViewCell {
 
     static let reuseIdentifier = "FeedListTableViewCellIdentifier"
+    
     @IBOutlet weak var titleLbl: UILabel!
-
+    @IBOutlet weak var descriptionLbl: UILabel!
+    
     func updateTheView(data: FeedCellDataSource) {
         titleLbl.text = data.feedtitle
+        descriptionLbl.text = data.feedDescription
     }
 }
