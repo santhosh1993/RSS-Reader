@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RSSDataLoader
 
 class FeedSource:FeedSectionHeaderDataSource {
     var imgName: String = "arrowDown"
@@ -20,18 +19,18 @@ class FeedSource:FeedSectionHeaderDataSource {
         }
     }
     
-    init(data:RSSFeedsProtocol, filter:((RSSFeedProtocol) -> Bool)) {
+    init(data:RSSFeedsAdaptorProtocol, filter:((RSSFeedAdaptorProtocol) -> Bool)) {
         title = data.title ?? ""
         url = data.url ?? ""
         
-        let feedArray = (data.feed?.allObjects as? [RSSFeedProtocol])?.filter({ (object) -> Bool in
+        let feedArray = (data.feed?.allObjects as? [RSSFeedAdaptorProtocol])?.filter({ (object) -> Bool in
             return filter(object)
         })
         
         self.updateFeed(rssFeed: feedArray ?? [])
     }
     
-    func updateFeed(rssFeed:[RSSFeedProtocol]) {
+    func updateFeed(rssFeed:[RSSFeedAdaptorProtocol]) {
         for each in rssFeed {
             feed.append(Feed(feed: each))
         }
@@ -39,15 +38,15 @@ class FeedSource:FeedSectionHeaderDataSource {
 }
 
 class Feed {
-    private var feed:RSSFeedProtocol
+    private var feed:RSSFeedAdaptorProtocol
     
-    init(feed: RSSFeedProtocol) {
+    init(feed: RSSFeedAdaptorProtocol) {
         self.feed = feed
     }
     
 }
 
-extension Feed: RSSFeedProtocol{
+extension Feed: RSSFeedAdaptorProtocol{
     var feedDescription: String? {
         return feed.feedDescription
     }

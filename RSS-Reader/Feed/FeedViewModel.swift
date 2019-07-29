@@ -8,7 +8,16 @@
 
 import Foundation
 import RSSFeederLogin
-import RSSDataLoader
+
+protocol FeedViewModelDataSource: class {
+    static func deleteFeedDate(before: Date)
+    static func getRSSFeeds() -> [RSSFeedsAdaptorProtocol]
+    static func addNewRSSFeed(url:String, title:String, callBack:RSSDataLoaderAdaptorProtocol)
+    static func updateTheState(for feed:RSSFeedAdaptorProtocol,isDone :Bool? ,isOpened:Bool? )
+    static func deleteFeedData(guid: String)
+    static func updateTheFeed()
+    static func setTheCallBack(with inst:RSSDataLoaderAdaptorProtocol)
+}
 
 protocol FeedViewModelDelegate: class {
     func reloadData()
@@ -22,16 +31,19 @@ class FeedViewModel {
     var segmentState: SegmentState = SegmentState.New
     
     var rssFeeds:[FeedSource] = []
+    var feedDataSource:FeedViewModelDataSource
     
-    init() {
+    init(feedDataSource:FeedViewModelDataSource = RSSDataLoaderAdaptor()) {
+        self.feedDataSource = feedDataSource
+
         if let date = DeleteRule.selectedState()?.getDate(){
-            RSSDataLoader.deleteFeedDate(before: date)
+            type(of: feedDataSource).deleteFeedDate(before: date)
         }
     }
     
     func getTheFeed() {
         rssFeeds = []
-        let feeds = RSSDataLoader.getRSSFeeds()
+        let feeds = type(of: feedDataSource).getRSSFeeds()
         
         for each in feeds {
             let source = FeedSource(data: each, filter: { (object) in
@@ -59,12 +71,12 @@ class FeedViewModel {
     }
     
     func addNewRSSFeed(title:String, url:String) {
-        RSSDataLoader.addNewRSSFeed(url: url, title: title, callBack: self)
+        type(of: feedDataSource).addNewRSSFeed(url: url, title: title, callBack: self)
     }
     
     func itemSelected(indexPath:IndexPath) {
         let feed = rssFeeds[indexPath.section].feed[indexPath.row]
-        RSSDataLoader.updateTheState(for: feed, isDone: nil, isOpened: true)
+        type(of: feedDataSource).updateTheState(for: feed, isDone: nil, isOpened: true)
         delegate?.pushTheFeedDetailView(feed: feed)
     }
     
@@ -80,15 +92,17 @@ class FeedViewModel {
     
     func deleteData(indexPath: IndexPath) {
         if let guid = rssFeeds[indexPath.section].feed[indexPath.row].guid {
-            RSSDataLoader.deleteFeedData(guid: guid)
+            type(of: feedDataSource).deleteFeedData(guid: guid)
         }
     }
     
     private func refeshTheData() {
         DispatchQueue.main.async { [weak self] in
-            self?.delegate?.showLoader()
-            RSSDataLoader.setTheCallBack(with: self!)
-            RSSDataLoader.updateTheFeed()
+            if let ref = self {
+                ref.delegate?.showLoader()
+                type(of: ref.feedDataSource).setTheCallBack(with: self!)
+                type(of: ref.feedDataSource).updateTheFeed()
+            }
         }
     }
 }
@@ -103,7 +117,7 @@ extension FeedViewModel: RSSFeederLoginCallBack{
     }
 }
 
-extension FeedViewModel: RSSDataLoaderProtocol{
+extension FeedViewModel: RSSDataLoaderAdaptorProtocol{
     func completion(status: Bool) {
         dataGotUpdated()
     }

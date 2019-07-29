@@ -8,7 +8,6 @@
 
 import UIKit
 import WebKit
-import Notes
 
 class FeedDetailViewController: BaseViewController {
     @IBOutlet weak var webVw: WKWebView!
@@ -18,6 +17,7 @@ class FeedDetailViewController: BaseViewController {
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     
     var viewModel: FeedDetailViewModel = FeedDetailViewModel()
+    var notes:NotesAdaptorProtocol = NotesAdaptor()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +71,7 @@ class FeedDetailViewController: BaseViewController {
     }
     
     func addNotes(title:String, description: String,key: String) {
-        Notes.addNotesWith(title: title, description: description,key: key)
+        type(of: notes).addNotes(title: title, description: description,key: key)
     }
 }
 

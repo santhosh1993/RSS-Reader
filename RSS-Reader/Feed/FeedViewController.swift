@@ -8,7 +8,6 @@
 
 import UIKit
 import RSSFeederLogin
-import RSSDataLoader
 
 class FeedViewController: BaseViewController {
 

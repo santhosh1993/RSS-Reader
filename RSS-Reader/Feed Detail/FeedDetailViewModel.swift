@@ -7,7 +7,10 @@
 //
 
 import Foundation
-import RSSDataLoader
+
+protocol FeedDetailViewModelDataSource {
+    static func updateTheState(for: RSSFeedAdaptorProtocol, isDone: Bool?, isOpened: Bool?)
+}
 
 protocol FeedDetailViewModelDelegate: class {
     func loadRequest(url: URL)
@@ -22,7 +25,12 @@ protocol FeedDetailViewModelDelegate: class {
 class FeedDetailViewModel {
     var feed:Feed?
     
-    weak var delegate:FeedDetailViewModelDelegate?
+    weak var delegate: FeedDetailViewModelDelegate?
+    var dataSource: FeedDetailViewModelDataSource
+    
+    init(dataSource: FeedDetailViewModelDataSource = RSSDataLoaderAdaptor()) {
+        self.dataSource = dataSource
+    }
     
     func setTheFeed(feed:Feed?) {
         self.feed = feed
@@ -30,7 +38,7 @@ class FeedDetailViewModel {
     
     func doneBtnTapped() {
         if let feed = feed {
-            RSSDataLoader.updateTheState(for: feed, isDone: true, isOpened: true)
+            type(of: dataSource).updateTheState(for: feed, isDone: true, isOpened: true)
         }
         delegate?.popTheViewController()
     }

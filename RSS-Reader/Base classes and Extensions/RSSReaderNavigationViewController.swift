@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RSSFeederLogin
 
 class RSSReaderNavigationViewController: UINavigationController {
 

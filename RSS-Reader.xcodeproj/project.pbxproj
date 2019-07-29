@@ -20,6 +20,9 @@
 		B50D448322E98D5300C5D0E8 /* FeedListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50D448222E98D5300C5D0E8 /* FeedListTableViewCell.swift */; };
 		B53423BE22DF05E300FB37B7 /* Notes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53423B922DF05D900FB37B7 /* Notes.framework */; };
 		B53423BF22DF05E300FB37B7 /* Notes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B53423B922DF05D900FB37B7 /* Notes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B563336922EC92B0002043F9 /* FeedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B563336822EC92B0002043F9 /* FeedViewModelTests.swift */; };
+		B563336C22EEC347002043F9 /* RSSDataLoaderAdaptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B563336B22EEC347002043F9 /* RSSDataLoaderAdaptor.swift */; };
+		B563336E22EF007F002043F9 /* NotesAdaptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B563336D22EF007F002043F9 /* NotesAdaptor.swift */; };
 		B568EBE9229E5DDC002C67DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B568EBE8229E5DDC002C67DA /* AppDelegate.swift */; };
 		B568EBEB229E5DDC002C67DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B568EBEA229E5DDC002C67DA /* ViewController.swift */; };
 		B568EBEE229E5DDC002C67DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B568EBEC229E5DDC002C67DA /* Main.storyboard */; };
@@ -119,6 +122,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		B50D449922EAE14700C5D0E8 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B5CF275922D33CB000E4979B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -144,7 +157,14 @@
 		B50D447E22E85CFB00C5D0E8 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		B50D448022E89C4E00C5D0E8 /* RSSReaderNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSReaderNavigationViewController.swift; sourceTree = "<group>"; };
 		B50D448222E98D5300C5D0E8 /* FeedListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedListTableViewCell.swift; sourceTree = "<group>"; };
+		B50D448A22EAE14700C5D0E8 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		B50D448D22EAE14700C5D0E8 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		B50D449022EAE14700C5D0E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		B50D449222EAE14700C5D0E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B53423B322DF05D900FB37B7 /* Notes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Notes.xcodeproj; path = ../Notes/Notes.xcodeproj; sourceTree = "<group>"; };
+		B563336822EC92B0002043F9 /* FeedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModelTests.swift; sourceTree = "<group>"; };
+		B563336B22EEC347002043F9 /* RSSDataLoaderAdaptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSDataLoaderAdaptor.swift; sourceTree = "<group>"; };
+		B563336D22EF007F002043F9 /* NotesAdaptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesAdaptor.swift; sourceTree = "<group>"; };
 		B568EBE5229E5DDC002C67DA /* RSS-Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RSS-Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B568EBE8229E5DDC002C67DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B568EBEA229E5DDC002C67DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +247,24 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		B50D448922EAE14700C5D0E8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B50D448A22EAE14700C5D0E8 /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B50D448C22EAE14700C5D0E8 /* RSSReaderWidget */ = {
+			isa = PBXGroup;
+			children = (
+				B50D448D22EAE14700C5D0E8 /* TodayViewController.swift */,
+				B50D448F22EAE14700C5D0E8 /* MainInterface.storyboard */,
+				B50D449222EAE14700C5D0E8 /* Info.plist */,
+			);
+			path = RSSReaderWidget;
+			sourceTree = "<group>";
+		};
 		B53423B422DF05D900FB37B7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +272,23 @@
 				B53423BB22DF05D900FB37B7 /* NotesTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B563336222EC91DF002043F9 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				B563336822EC92B0002043F9 /* FeedViewModelTests.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		B563336A22EEC2F2002043F9 /* Third party Adaptors */ = {
+			isa = PBXGroup;
+			children = (
+				B563336B22EEC347002043F9 /* RSSDataLoaderAdaptor.swift */,
+				B563336D22EF007F002043F9 /* NotesAdaptor.swift */,
+			);
+			path = "Third party Adaptors";
 			sourceTree = "<group>";
 		};
 		B568EBDC229E5DDC002C67DA = {
@@ -245,6 +300,8 @@
 				B568EBE7229E5DDC002C67DA /* RSS-Reader */,
 				B568EBFF229E5DDD002C67DA /* RSS-ReaderTests */,
 				B568EC0A229E5DDD002C67DA /* RSS-ReaderUITests */,
+				B50D448C22EAE14700C5D0E8 /* RSSReaderWidget */,
+				B50D448922EAE14700C5D0E8 /* Frameworks */,
 				B568EBE6229E5DDC002C67DA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -262,6 +319,7 @@
 		B568EBE7229E5DDC002C67DA /* RSS-Reader */ = {
 			isa = PBXGroup;
 			children = (
+				B563336A22EEC2F2002043F9 /* Third party Adaptors */,
 				B50D447222E6EA6D00C5D0E8 /* Settings */,
 				B5C9717822DA2885000BE928 /* Loader */,
 				B5C9717322DA25D8000BE928 /* Base classes and Extensions */,
@@ -281,6 +339,7 @@
 		B568EBFF229E5DDD002C67DA /* RSS-ReaderTests */ = {
 			isa = PBXGroup;
 			children = (
+				B563336222EC91DF002043F9 /* Feed */,
 				B568EC00229E5DDD002C67DA /* RSS_ReaderTests.swift */,
 				B568EC02229E5DDD002C67DA /* Info.plist */,
 			);
@@ -345,6 +404,7 @@
 				B568EBE2229E5DDC002C67DA /* Frameworks */,
 				B568EBE3229E5DDC002C67DA /* Resources */,
 				B5CF275922D33CB000E4979B /* Embed Frameworks */,
+				B50D449922EAE14700C5D0E8 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -529,6 +589,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B50D447F22E85CFB00C5D0E8 /* SettingsModel.swift in Sources */,
+				B563336E22EF007F002043F9 /* NotesAdaptor.swift in Sources */,
 				B50D448322E98D5300C5D0E8 /* FeedListTableViewCell.swift in Sources */,
 				B50D447922E6EB3C00C5D0E8 /* SettingsView.swift in Sources */,
 				B50D448122E89C4E00C5D0E8 /* RSSReaderNavigationViewController.swift in Sources */,
@@ -541,6 +602,7 @@
 				B5C9717B22DA289F000BE928 /* LoaderViewController.swift in Sources */,
 				B5C9717E22DB10F3000BE928 /* FeedDetailViewModel.swift in Sources */,
 				B50D447B22E731D200C5D0E8 /* SettingsTableViewCell.swift in Sources */,
+				B563336C22EEC347002043F9 /* RSSDataLoaderAdaptor.swift in Sources */,
 				B50D447722E6EA8900C5D0E8 /* SettingsViewController.swift in Sources */,
 				B5C9716722D74D78000BE928 /* FeedView.swift in Sources */,
 				B568EBE9229E5DDC002C67DA /* AppDelegate.swift in Sources */,
@@ -553,6 +615,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B563336922EC92B0002043F9 /* FeedViewModelTests.swift in Sources */,
 				B568EC01229E5DDD002C67DA /* RSS_ReaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -596,6 +659,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B50D448F22EAE14700C5D0E8 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B50D449022EAE14700C5D0E8 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		B568EBEC229E5DDC002C67DA /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

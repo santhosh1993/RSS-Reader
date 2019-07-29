@@ -7,7 +7,10 @@
 //
 
 import Foundation
-import RSSDataLoader
+
+protocol SettingsViewModelDataSource: class {
+   static func deleteFeedDate(before: Date)
+}
 
 protocol SettingsViewModelDelegate: class {
     func dataUpdated()
@@ -18,9 +21,11 @@ protocol SettingsViewModelDelegate: class {
 class SettingsViewModel {
     var sectionList:[Section] = []
     weak var delegate: SettingsViewModelDelegate?
+    let dataSource: SettingsViewModelDataSource
     
-    init() {
+    init(dataSource:  SettingsViewModelDataSource = RSSDataLoaderAdaptor()) {
         sectionList.append(DeleteRuleSection())
+        self.dataSource = dataSource
     }
     
     func resetSatusOfSetting(index:Int) {
@@ -40,7 +45,7 @@ class SettingsViewModel {
         for each in sectionList {
             let result = each.saveTheSettings()
             if let result = result as? DeleteRule {
-                RSSDataLoader.deleteFeedDate(before: result.getDate())
+                type(of: dataSource).deleteFeedDate(before: result.getDate())
                 DispatchQueue.main.async { [weak self] in
                     self?.delegate?.popTheController()
                     self?.delegate?.showAlert(title: "Data Got Deleted", message: "Feed with less than \(result.inDays()) got deleted")
