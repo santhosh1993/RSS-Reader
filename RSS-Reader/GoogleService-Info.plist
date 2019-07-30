@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>100453504077-4nl0u2ka896mfplobds2ctars8mt7u03.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.100453504077-4nl0u2ka896mfplobds2ctars8mt7u03</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA9KbaZQEQrQaqPLoPO884Up8V4h5UWFaw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>100453504077</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Epam.RSS-Reader</string>
+	<key>PROJECT_ID</key>
+	<string>rssreader-55321</string>
+	<key>STORAGE_BUCKET</key>
+	<string>rssreader-55321.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:100453504077:ios:59169b25c2fe9b79</string>
+	<key>DATABASE_URL</key>
+	<string>https://rssreader-55321.firebaseio.com</string>
+</dict>
+</plist>
